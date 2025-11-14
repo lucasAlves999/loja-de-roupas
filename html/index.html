@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bobs Roupas</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="menunav">
+            <div class="logo-texto">
+                <h1>Bobs Roupas</h1>
+                <p class="descricao-loja">Descubra as ultimas tendências em moda com qualidade e estilo</p>
+            </div>
+            <ul class="menu">
+                <li><a href="#" class="nav-link" data-page="inicio">Início</a></li>
+                <li><a href="#" class="nav-link" data-page="cadastro">Criar conta</a></li>
+                <li><a href="#" class="nav-link" data-page="carrinho">Carrinho</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="secao-inicio" class="secao-ativa">
+            <div class="hero-simples">
+                <h2>Bem vindos a Bobs roupas</h2>
+            </div>
+
+            <!-- CARROSSEL ADICIONADO AQUI -->
+            <section class="carrossel-section">
+                <h2>Destaques</h2>
+                <div class="carrossel-container">
+                    <button class="carrossel-btn carrossel-btn-prev">‹</button>
+                    
+                    <div class="carrossel">
+                        <div class="carrossel-track" id="carrosselTrack">
+                            <!-- Cards serão inseridos aqui via JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <button class="carrossel-btn carrossel-btn-next">›</button>
+                </div>
+                
+                <div class="carrossel-dots" id="carrosselDots">
+                    <!-- Indicadores serão inseridos aqui -->
+                </div>
+            </section>
+        </section>
+
+        <section id="secao-produtos" class="secao-oculta">
+            <h2>Nossos Produtos</h2>
+            <div class="grid-produtos" id="grid-produtos">
+                <!-- Produtos serão carregados aqui -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bobs Roupas. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/carrosel.js"></script>
+</body>
+</html>
