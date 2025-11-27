@@ -1,0 +1,261 @@
+/* responsive.css - Design Responsivo para Bobs Roupas */
+
+/* ===== TABLETS (768px a 1024px) ===== */
+@media (max-width: 1024px) {
+    .menunav {
+        padding: 1rem;
+    }
+    
+    .menu {
+        gap: 1rem;
+    }
+    
+    .logo-texto h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-simples h2 {
+        font-size: 2rem;
+    }
+    
+    /* Carrossel em tablet */
+    .carrossel-container {
+        padding: 0 40px;
+    }
+    
+    .carrossel-card {
+        min-width: 280px;
+    }
+    
+    /* Grid de produtos */
+    .grid-produtos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .form-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
+
+/* ===== CELULARES (até 768px) ===== */
+@media (max-width: 768px) {
+    /* Header mobile */
+    .menunav {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    
+    .menu a {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .logo-texto h1 {
+        font-size: 1.3rem;
+    }
+    
+    .descricao-loja {
+        font-size: 0.8rem;
+    }
+    
+    /* Main content */
+    main {
+        padding: 1rem;
+        margin-top: 120px; /* Mais espaço para header mobile */
+    }
+    
+    /* Hero section */
+    .hero-simples {
+        padding: 2rem 1rem;
+    }
+    
+    .hero-simples h2 {
+        font-size: 1.5rem;
+    }
+    
+    /* Carrossel mobile */
+    .carrossel-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .carrossel-container {
+        padding: 0 30px;
+    }
+    
+    .carrossel-card {
+        min-width: 250px;
+    }
+    
+    .carrossel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .carrossel-card img {
+        height: 180px;
+    }
+    
+    /* Produtos mobile */
+    #secao-produtos h2 {
+        font-size: 1.5rem;
+    }
+    
+    .grid-produtos {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 0.5rem;
+    }
+    
+    .card-produto {
+        padding: 1rem;
+    }
+    
+    .card-produto img {
+        height: 180px;
+    }
+    
+    /* Carrinho mobile */
+    .carrinho-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .carrinho-item-controles {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .quantidade-controle {
+        justify-content: center;
+    }
+    
+    .carrinho-total {
+        padding: 1.5rem;
+    }
+    
+    /* Formulário mobile */
+    .form-container {
+        margin: 0.5rem;
+        padding: 1rem;
+    }
+    
+    .form-group input {
+        padding: 10px;
+    }
+    
+    .btn-submit {
+        padding: 12px;
+    }
+    
+    /* Footer mobile */
+    footer {
+        padding: 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== CELULARES PEQUENOS (até 480px) ===== */
+@media (max-width: 480px) {
+    .menu {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .menu a {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .carrossel-container {
+        padding: 0 20px;
+    }
+    
+    .carrossel-card {
+        min-width: 220px;
+    }
+    
+    .carrossel-card img {
+        height: 150px;
+    }
+    
+    .carrossel-card-content {
+        padding: 15px;
+    }
+    
+    .hero-simples h2 {
+        font-size: 1.3rem;
+    }
+    
+    .grid-produtos {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-produto {
+        padding: 0.8rem;
+    }
+    
+    .carrinho-item img {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* ===== ORIENTAÇÃO LANDSCAPE (celular deitado) ===== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .menunav {
+        padding: 0.5rem 1rem;
+    }
+    
+    main {
+        margin-top: 100px;
+    }
+    
+    .hero-simples {
+        padding: 1rem;
+    }
+}
+
+/* ===== TELAS GRANDES (acima de 1200px) ===== */
+@media (min-width: 1200px) {
+    .menunav {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    main {
+        max-width: 1200px;
+        margin: 80px auto 0;
+    }
+    
+    .carrossel-container {
+        max-width: 1200px;
+    }
+    
+    .grid-produtos {
+        max-width: 1200px;
+    }
+}
+
+/* ===== AJUSTES PARA TELAS MUITO GRANDES ===== */
+@media (min-width: 1440px) {
+    .carrossel-card {
+        min-width: 350px;
+    }
+    
+    .grid-produtos {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
