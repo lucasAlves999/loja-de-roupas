@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bobs Roupas</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css"
 </head>
 <body>
     <header>
@@ -15,6 +16,7 @@
             </div>
             <ul class="menu">
                 <li><a href="#" class="nav-link" data-page="inicio">Início</a></li>
+                <li><a href="#" class="nav-link" data-page="produtos">Produtos</a></li>
                 <li><a href="#" class="nav-link" data-page="cadastro">Criar conta</a></li>
                 <li><a href="#" class="nav-link" data-page="carrinho">Carrinho</a></li>
             </ul>
@@ -22,12 +24,14 @@
     </header>
 
     <main>
+        <!-- Seção Início -->
         <section id="secao-inicio" class="secao-ativa">
             <div class="hero-simples">
                 <h2>Bem vindos a Bobs roupas</h2>
+                <p> Crie sua conta e aproveite as promoções </p>
             </div>
 
-            <!-- CARROSSEL ADICIONADO AQUI -->
+            <!-- CARROSSEL (MANTIDO COMO ESTAVA) -->
             <section class="carrossel-section">
                 <h2>Destaques</h2>
                 <div class="carrossel-container">
@@ -48,10 +52,55 @@
             </section>
         </section>
 
+        <!-- Seção Produtos -->
         <section id="secao-produtos" class="secao-oculta">
             <h2>Nossos Produtos</h2>
             <div class="grid-produtos" id="grid-produtos">
                 <!-- Produtos serão carregados aqui -->
+            </div>
+        </section>
+
+        <!-- Seção Cadastro (SPA) -->
+        <section id="secao-cadastro" class="secao-oculta">
+            <div class="form-container">
+                <h2>Criar Conta</h2>
+                <form id="form-cadastro">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo:</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="senha">Senha:</label>
+                        <input type="password" id="senha" name="senha" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmar-senha">Confirmar Senha:</label>
+                        <input type="password" id="confirmar-senha" name="confirmar-senha" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">Criar Conta</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Seção Carrinho (SPA) -->
+        <section id="secao-carrinho" class="secao-oculta">
+            <h2>Seu Carrinho</h2>
+            <div id="conteudo-carrinho">
+                <div class="carrinho-vazio" id="carrinho-vazio">
+                    <p>Seu carrinho está vazio</p>
+                    <a href="#" class="nav-link" data-page="produtos">Ver Produtos</a>
+                </div>
+                <div class="carrinho-itens" id="carrinho-itens" style="display: none;">
+                    <!-- Itens do carrinho serão carregados aqui -->
+                </div>
             </div>
         </section>
     </main>
@@ -62,5 +111,6 @@
 
     <script src="../js/main.js"></script>
     <script src="../js/carrosel.js"></script>
+    <script src="../js/produtos.js"></script>
 </body>
 </html>
