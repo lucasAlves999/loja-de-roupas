@@ -11,14 +11,15 @@ class Carrossel {
     }
     
     inicializar() {
-        this.carregarProdutos();
+        console.log('🎠 Inicializando carrossel...');
+        this.carregarProdutosCarrossel(); // ⬅️ MUDEI O NOME AQUI
         this.criarIndicadores();
         this.configurarEventos();
         this.atualizarCarrossel();
         this.ajustarCardsVisiveis();
     }
     
-    carregarProdutos() {
+    carregarProdutosCarrossel() { // ⬅️ MUDEI O NOME AQUI
         this.cards = [
             {
                 id: 1,
@@ -26,17 +27,17 @@ class Carrossel {
                 titulo: "Camisa Preta",
                 subtitulo: "Camisa casual preta",
                 preco: 79.9,
-                tamanhos: ["P", "M", "G"],
+                tamanhos: ["P", "M", "G", "GG"],
                 tipoTamanho: "Tamanho",
                 descricao: "Camiseta de alta qualidade com design exclusivo"
             },
             {
                 id: 2,
                 imagem: "img/jaqueta.jpg",
-                titulo: "Jaqueta",
+                titulo: "Jaqueta", 
                 subtitulo: "Jaquetas de Inverno",
                 preco: 200,
-                tamanhos: ["P", "M", "G"],
+                tamanhos: ["P", "M", "G", "GG"],
                 tipoTamanho: "Tamanho",
                 descricao: "Jaqueta quente e estilosa para o inverno"
             },
@@ -46,15 +47,15 @@ class Carrossel {
                 titulo: "Camisa Branca",
                 subtitulo: "Camisa casual branca",
                 preco: 79.9,
-                tamanhos: ["P", "M", "G"],
-                tipoTamanho: "Tamanho",
+                tamanhos: ["P", "M", "G", "GG"],
+                tipoTamanho: "Tamanho", 
                 descricao: "Camiseta de alta qualidade com design exclusivo"
             },
             {
                 id: 4,
                 imagem: "img/moletom.jpg",
                 titulo: "Moletom",
-                subtitulo: "Moletom Premium", 
+                subtitulo: "Moletom Premium",
                 preco: 159.90,
                 tamanhos: ["P", "M", "G", "GG"],
                 tipoTamanho: "Tamanho",
@@ -64,7 +65,7 @@ class Carrossel {
                 id: 5,
                 imagem: "img/bermuda.jpg",
                 titulo: "Bermuda",
-                subtitulo: "Bermuda Casual",
+                subtitulo: "Bermuda Casual", 
                 preco: 89.90,
                 tamanhos: ["38", "40", "42", "44"],
                 tipoTamanho: "Numeração",
@@ -77,8 +78,8 @@ class Carrossel {
                 subtitulo: "Calça Cargo estilosa",
                 preco: 120.90,
                 tamanhos: ["38", "40", "42", "44"],
-                tipoTamanho: "Numeração", 
-                descricao: "Calça leve e estilosa para varias ocasiões"
+                tipoTamanho: "Numeração",
+                descricao: "Calça leve e estilosa para varias ocasiões" 
             }
         ];
         
@@ -87,7 +88,7 @@ class Carrossel {
     
     renderizarCards() {
         this.carrosselTrack.innerHTML = this.cards.map(card => `
-            <div class="carrossel-card">
+            <div class="carrossel-card" data-product-id="${card.id}">
                 <img src="${card.imagem}" alt="${card.titulo}">
                 <div class="carrossel-card-content">
                     <h3>${card.titulo}</h3>
@@ -184,10 +185,20 @@ class Carrossel {
     
     selecionarTamanho(botao) {
         const grupo = botao.parentElement;
+        const card = botao.closest('.carrossel-card');
+        
+        // Remove seleção de outros botões no mesmo grupo
         grupo.querySelectorAll('.tamanho-btn').forEach(btn => {
             btn.classList.remove('ativo');
         });
+        
+        // Seleciona o botão clicado
         botao.classList.add('ativo');
+
+        const tamanhoSelecionado = botao.textContent;
+        card.dataset.tamanhoSelecionado = tamanhoSelecionado;
+
+        console.log(`✅ Tamanho ${tamanhoSelecionado} selecionado para o produto`);
     }
     
     ajustarCardsVisiveis() {
@@ -208,6 +219,8 @@ class Carrossel {
     }
 }
 
+// ⬇️⬇️⬇️ MODIFIQUE a inicialização para ser global
 document.addEventListener('DOMContentLoaded', function() {
-    new Carrossel();
+    console.log('🚀 Inicializando aplicação...');
+    window.carrosselInstance = new Carrossel();
 });
