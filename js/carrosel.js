@@ -11,15 +11,14 @@ class Carrossel {
     }
     
     inicializar() {
-        console.log('🎠 Inicializando carrossel...');
-        this.carregarProdutosCarrossel(); // ⬅️ MUDEI O NOME AQUI
+        this.carregarProdutosCarrossel();
         this.criarIndicadores();
         this.configurarEventos();
         this.atualizarCarrossel();
         this.ajustarCardsVisiveis();
     }
     
-    carregarProdutosCarrossel() { // ⬅️ MUDEI O NOME AQUI
+    carregarProdutosCarrossel() {
         this.cards = [
             {
                 id: 1,
@@ -88,23 +87,26 @@ class Carrossel {
     
     renderizarCards() {
         this.carrosselTrack.innerHTML = this.cards.map(card => `
-            <div class="carrossel-card" data-product-id="${card.id}">
-                <img src="${card.imagem}" alt="${card.titulo}">
+            <div class="carrossel-card" data-product-id="${card.id}" data-tamanho-selecionado="M">
+                <img src="${card.imagem}" alt="${card.titulo}" 
+                     onerror="this.src='https://via.placeholder.com/300x400/3498db/ffffff?text=${encodeURIComponent(card.titulo)}'">
                 <div class="carrossel-card-content">
                     <h3>${card.titulo}</h3>
                     <p class="subtitulo">${card.subtitulo}</p>
                     <p class="preco">R$ ${card.preco.toFixed(2)}</p>
                     
                     <div class="tamanhos">
-                        <h4>${card.tipoTamanho}:</h4>
-                        <div class="tamanhos-lista">
+                        <label for="tamanho-${card.id}">${card.tipoTamanho}:</label>
+                        <select id="tamanho-${card.id}" class="tamanho-select" 
+                                onchange="atualizarTamanhoSelecionado(${card.id}, this.value)">
                             ${card.tamanhos.map(tamanho => 
-                                `<button class="tamanho-btn" data-tamanho="${tamanho}">${tamanho}</button>`
+                                `<option value="${tamanho}" ${tamanho === 'M' ? 'selected' : ''}>${tamanho}</option>`
                             ).join('')}
-                        </div>
+                        </select>
                     </div>
                     
-                    <button class="btn-adicionar" onclick="adicionarAoCarrinho(${JSON.stringify(card).replace(/"/g, '&quot;')})">
+                    <button class="btn-adicionar" 
+                            onclick="adicionarAoCarrinho(${JSON.stringify(card).replace(/"/g, '&quot;')})">
                         Adicionar ao Carrinho
                     </button>
                 </div>
@@ -138,12 +140,6 @@ class Carrossel {
         this.carrosselDots.addEventListener('click', (e) => {
             if (e.target.classList.contains('carrossel-dot')) {
                 this.irParaSlide(parseInt(e.target.dataset.slide));
-            }
-        });
-        
-        this.carrosselTrack.addEventListener('click', (e) => {
-            if (e.target.classList.contains('tamanho-btn')) {
-                this.selecionarTamanho(e.target);
             }
         });
         
@@ -183,24 +179,6 @@ class Carrossel {
         });
     }
     
-    selecionarTamanho(botao) {
-        const grupo = botao.parentElement;
-        const card = botao.closest('.carrossel-card');
-        
-        // Remove seleção de outros botões no mesmo grupo
-        grupo.querySelectorAll('.tamanho-btn').forEach(btn => {
-            btn.classList.remove('ativo');
-        });
-        
-        // Seleciona o botão clicado
-        botao.classList.add('ativo');
-
-        const tamanhoSelecionado = botao.textContent;
-        card.dataset.tamanhoSelecionado = tamanhoSelecionado;
-
-        console.log(`✅ Tamanho ${tamanhoSelecionado} selecionado para o produto`);
-    }
-    
     ajustarCardsVisiveis() {
         if (window.innerWidth < 768) {
             this.cardsVisiveis = 1;
@@ -219,8 +197,6 @@ class Carrossel {
     }
 }
 
-// ⬇️⬇️⬇️ MODIFIQUE a inicialização para ser global
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Inicializando aplicação...');
     window.carrosselInstance = new Carrossel();
 });

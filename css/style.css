@@ -192,28 +192,11 @@ main {
     margin-bottom: 8px;
 }
 
-.tamanhos-lista {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
 
-.tamanho-btn {
-    padding: 5px 10px;
-    border: 1px solid #ddd;
-    background: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 0.8rem;
-}
 
-.tamanho-btn:hover,
-.tamanho-btn.ativo {
-    background: var(--cor-secundaria);
-    color: white;
-    border-color: var(--cor-secundaria);
-}
+
+
+
 
 .carrossel-card button {
     width: 100%;
@@ -746,4 +729,278 @@ footer {
 /* Efeito de clique nos botões */
 .btn-quantidade:active, .remover-item:active {
     transform: scale(0.95);
+}
+
+
+.carrossel-card {
+    flex: 0 0 300px;
+    min-width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 10px;
+}
+
+.carrossel-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.carrossel-card-content {
+    padding: 10px 0;
+}
+
+.tamanhos {
+    margin: 15px 0;
+}
+
+.tamanhos label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.tamanho-select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-adicionar {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.btn-adicionar:hover {
+    background: #0056b3;
+}
+
+.carrossel-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.carrossel-track {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.carrossel-btn-prev,
+.carrossel-btn-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.carrossel-btn-prev {
+    left: 0;
+}
+
+.carrossel-btn-next {
+    right: 0;
+}
+
+
+.carrossel-card .tamanhos {
+    margin: 15px 0;
+}
+
+.carrossel-card .tamanhos label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--cor-primaria);
+    font-size: 0.95rem;
+}
+
+.carrossel-card .tamanho-select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--cor-texto);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    padding-right: 35px;
+}
+
+.carrossel-card .tamanho-select:focus {
+    outline: none;
+    border-color: var(--cor-secundaria);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.carrossel-card .tamanho-select:hover {
+    border-color: var(--cor-secundaria);
+}
+
+/* Select de tamanho na página de produtos */
+.card-produto .tamanhos {
+    margin: 15px 0;
+    text-align: left;
+}
+
+.card-produto .tamanhos label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--cor-primaria);
+    font-size: 0.95rem;
+}
+
+.card-produto .tamanho-select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--cor-texto);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    padding-right: 35px;
+}
+
+.card-produto .tamanho-select:focus {
+    outline: none;
+    border-color: var(--cor-secundaria);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.card-produto .tamanho-select:hover {
+    border-color: var(--cor-secundaria);
+}
+
+/* Remove os estilos antigos dos botões de tamanho */
+.tamanhos-lista {
+    display: none !important;
+}
+
+.tamanho-btn {
+    display: none !important;
+}
+
+/* ===== BOTÃO ADICIONAR AO CARRINHO ===== */
+.carrossel-card .btn-adicionar,
+.card-produto .btn-adicionar {
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--cor-secundaria);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.carrossel-card .btn-adicionar:hover,
+.card-produto .btn-adicionar:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.carrossel-card .btn-adicionar:active,
+.card-produto .btn-adicionar:active {
+    transform: translateY(0);
+}
+
+/* ===== ESTILOS PARA O CARRINHO ===== */
+.carrinho-item small {
+    display: block;
+    color: var(--cor-primaria);
+    font-weight: 500;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    background: #f8f9fa;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* ===== RESPONSIVIDADE PARA SELECTS ===== */
+@media (max-width: 768px) {
+    .carrossel-card .tamanho-select,
+    .card-produto .tamanho-select {
+        padding: 12px 15px;
+        font-size: 16px; /* Aumenta para mobile */
+    }
+    
+    .carrossel-card .btn-adicionar,
+    .card-produto .btn-adicionar {
+        padding: 14px 20px;
+        font-size: 1.1rem; /* Aumenta para mobile */
+    }
+}
+
+/* ===== ESTILO PARA OPTIONS ===== */
+.tamanho-select option {
+    padding: 10px;
+    background: white;
+    color: var(--cor-texto);
+}
+
+.tamanho-select option:hover {
+    background: var(--cor-secundaria);
+    color: white;
+}
+
+.tamanho-select option:checked {
+    background: var(--cor-secundaria);
+    color: white;
+}
+
+/* ===== REMOVER CONFLITOS COM ESTILOS ANTERIORES ===== */
+/* Remove os estilos antigos que podem conflitar */
+.carrossel-card .tamanhos h4 {
+    display: none; /* Esconde o título antigo */
+}
+
+.card-produto .tamanhos h4 {
+    display: none; /* Esconde o título antigo */
 }

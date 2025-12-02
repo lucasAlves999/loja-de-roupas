@@ -1,4 +1,3 @@
-// NOVO produtos.js - COMPLETO
 const todosProdutos = [
     {
         id: 1,
@@ -73,7 +72,7 @@ function carregarProdutos() {
     if (!gridProdutos) return;
 
     gridProdutos.innerHTML = todosProdutos.map(produto => `
-        <div class="card-produto" data-product-id="${produto.id}">
+        <div class="card-produto" data-product-id="${produto.id}" data-tamanho-selecionado="M">
             <img src="${produto.imagem}" alt="${produto.titulo}" 
                  onerror="this.src='https://via.placeholder.com/300x300/3498db/ffffff?text=${encodeURIComponent(produto.titulo)}'">
             <div class="produto-info">
@@ -81,70 +80,55 @@ function carregarProdutos() {
                 <p class="subtitulo">${produto.subtitulo}</p>
                 <p class="preco">R$ ${produto.preco.toFixed(2)}</p>
                 
-                
                 <div class="tamanhos">
-                    <h4>${produto.tipoTamanho}:</h4>
-                    <div class="tamanhos-lista">
+                    <label for="tamanho-produto-${produto.id}">${produto.tipoTamanho}:</label>
+                    <select id="tamanho-produto-${produto.id}" class="tamanho-select" 
+                            onchange="atualizarTamanhoSelecionado(${produto.id}, this.value)">
                         ${produto.tamanhos.map(tamanho => 
-                            `<button class="tamanho-btn" data-tamanho="${tamanho}">${tamanho}</button>`
+                            `<option value="${tamanho}" ${tamanho === 'M' ? 'selected' : ''}>${tamanho}</option>`
                         ).join('')}
-                    </div>
+                    </select>
                 </div>
                 
-                <button class="btn-adicionar" onclick="adicionarAoCarrinho(${JSON.stringify(produto).replace(/"/g, '&quot;')})">
+                <button class="btn-adicionar" 
+                        onclick="adicionarAoCarrinho(${JSON.stringify(produto).replace(/"/g, '&quot;')})">
                     Adicionar ao Carrinho
                 </button>
             </div>
         </div>
     `).join('');
 
-    // ⬇️⬇️⬇️ CONFIGURA OS BOTÕES DE TAMANHO
-    configurarBotoesTamanho();
+    // ⬇️⬇️⬇️ CONFIGURA OS SELECTS DE TAMANHO
+    configurarSelectsTamanho();
 }
 
-function configurarBotoesTamanho() {
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('tamanho-btn')) {
-            const botao = e.target;
-            const grupo = botao.parentElement;
-            const card = botao.closest('.card-produto');
-            
-            // Remove seleção de outros botões no mesmo grupo
-            grupo.querySelectorAll('.tamanho-btn').forEach(btn => {
-                btn.classList.remove('ativo');
-            });
-            
-            // Seleciona o botão clicado
-            botao.classList.add('ativo');
-            
-            // Salva o tamanho selecionado no card
-            const tamanhoSelecionado = botao.textContent;
-            card.dataset.tamanhoSelecionado = tamanhoSelecionado;
-            
-            console.log(`Tamanho ${tamanhoSelecionado} selecionado para ${card.querySelector('h3').textContent}`);
+function configurarSelectsTamanho() {
+    document.querySelectorAll('.tamanho-select').forEach(select => {
+        const productId = select.id.replace('tamanho-produto-', '');
+        const card = document.querySelector(`[data-product-id="${productId}"]`);
+        
+        if (card) {
+            card.dataset.tamanhoSelecionado = select.value;
         }
     });
 }
 
-// ⬇️⬇️⬇️ NOVA FUNÇÃO para adicionar ao carrinho considerando tamanhos
-function adicionarAoCarrinhoProdutos(produto) {
-    const cardElement = document.querySelector(`.card-produto[data-product-id="${produto.id}"]`);
-    let tamanhoSelecionado = null;
-    
-    if (cardElement && cardElement.dataset.tamanhoSelecionado) {
-        tamanhoSelecionado = cardElement.dataset.tamanhoSelecionado;
+function atualizarTamanhoSelecionado(productId, tamanho) {
+    const card = document.querySelector(`[data-product-id="${productId}"]`);
+    if (card) {
+        card.dataset.tamanhoSelecionado = tamanho;
+        console.log(`Tamanho atualizado: ${tamanho} para produto ${productId}`);
     }
-    
-    const produtoComTamanho = {
-        ...produto,
-        tamanhoSelecionado: tamanhoSelecionado
-    };
-    
-    // Chama a função global do main.js
-    window.adicionarAoCarrinho(produtoComTamanho);
 }
 
 // Inicializa quando a página é carregada
 document.addEventListener('DOMContentLoaded', function() {
-    // A função carregarProdutos será chamada automaticamente quando navegar para a página de produtos
+    // Carrega produtos se estiver na página de produtos
+    if (document.getElementById('grid-produtos')) {
+        carregarProdutos();
+    }
 });
+
+// Torna funções disponíveis globalmente
+window.carregarProdutos = carregarProdutos;
+window.atualizarTamanhoSelecionado = atualizarTamanhoSelecionado;
